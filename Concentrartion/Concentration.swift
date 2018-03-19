@@ -10,7 +10,26 @@ import Foundation
 
 class Concentration {
     var cards = [Card]()
-    var indexOfFacedUpCard: Int?
+    var indexOfFacedUpCard: Int? {
+        get {
+            var foundIndex : Int?
+            for index in cards.indices{
+                if cards[index].faceUp{
+                    if foundIndex == nil{
+                        foundIndex = index
+                    } else {
+                        return nil
+                    }
+                }
+            }
+            return foundIndex
+        }
+        set {
+            for index in cards.indices{
+                cards[index].faceUp = ( index == newValue)
+            }
+        }
+    }
     
     static var flipCount = 0
     
@@ -33,13 +52,8 @@ class Concentration {
              
                 }
                   cards[index].faceUp = true
-                  indexOfFacedUpCard = nil
             }
             else{
-                for flipDown in cards.indices {
-                    cards[flipDown].faceUp = false
-                }
-                cards[index].faceUp = true
                 indexOfFacedUpCard = index
             }
         }

@@ -10,8 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    lazy var game: Concentration = Concentration(cardsPairNumber: (cardsButtons.count + 1)/2)
-    
+    lazy var game: Concentration = Concentration(cardsPairNumber: numberOfPairsOfCards)
+    var numberOfPairsOfCards : Int {
+        //Read Only computed property
+        get {
+            return ((cardsButtons.count+1)/2)
+        }
+    }
     var flipCount = 0
     
     @IBOutlet weak var flipsLabel: UILabel!
